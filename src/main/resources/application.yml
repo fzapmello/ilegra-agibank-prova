@@ -1,0 +1,28 @@
+app:
+  name: ilegra-agibank-app
+
+spring:
+    application:
+      name: ilegra-agibank-app
+    datasource:
+      password: ''
+      url: jdbc:h2:mem:ilegra-agibank;DB_CLOSE_ON_EXIT=TRUE
+      username: sa
+    h2:
+      console:
+        enabled: true
+    liquibase:
+      change-log: classpath:/db/changelog/db.changelog.xml
+    batch:
+      job:
+          enabled: false
+      initialize-schema: never
+
+    resources:
+        add-mappings: true
+
+server:
+  port: ${port:8181}
+
+logging:
+  level.org.springframework.cloud.config.client.ConfigServicePropertySourceLocator: WARN

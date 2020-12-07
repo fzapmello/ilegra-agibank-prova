@@ -1,0 +1,57 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'br.com'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation(
+			'org.springframework.boot:spring-boot-starter-batch',
+			'org.springframework.boot:spring-boot-starter-jdbc',
+			'org.springframework.boot:spring-boot-starter-web'
+	)
+	runtimeOnly(
+			'com.h2database:h2',
+			'org.liquibase:liquibase-core'
+	)
+	compileOnly(
+			'org.projectlombok:lombok',
+			'org.apache.commons:commons-lang3',
+			'commons-io:commons-io:2.6'
+	)
+
+	testRuntimeOnly (
+			'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+	)
+
+	testImplementation (
+		'org.springframework.boot:spring-boot-starter-test',
+		'org.junit.jupiter:junit-jupiter-api:5.3.1',
+		'org.springframework.batch:spring-batch-test',
+		'commons-io:commons-io:2.6',
+		'org.apache.commons:commons-lang3',
+	)
+	annotationProcessor(
+			'org.springframework.boot:spring-boot-configuration-processor',
+			'org.projectlombok:lombok'
+	)
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+}
+
+test {
+	useJUnitPlatform()
+}
